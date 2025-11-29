@@ -12,10 +12,10 @@ def main():
     reader = Reader()
 
     def refresh():
-        specialPercentage = reader.readSpecialMeter()
-        heavyPercentage = reader.readHeavylMeter()
+        specialPercentage, specialPixelsx = reader.readSpecialMeter()
+        heavyPercentage, heavyPixelsx = reader.readHeavylMeter()
         print(specialPercentage)
-        overlay.telemRefresh(specialPercentage, heavyPercentage)
+        overlay.telemRefresh(specialPercentage, heavyPercentage, specialPixelsx, heavyPixelsx)
 
     timer = QtCore.QTimer()
     timer.timeout.connect(refresh)
@@ -25,3 +25,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    # pyinstaller --onefile --noconsole --icon=resources/icon.ico main.py

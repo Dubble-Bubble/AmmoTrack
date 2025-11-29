@@ -45,8 +45,8 @@ class Reader():
         floor = 80  
         cieling = 255
         with mss.mss() as sct:
-            sctimg = sct.grab({"top": 0, "left": 0, "width": 1920, "height":1080})
-            # sctimg = cv2.imread('1085660_50.jpg')
+            # sctimg = sct.grab({"top": 0, "left": 0, "width": 1920, "height":1080})
+            sctimg = cv2.imread('spiderfullbounds.png')
             redef = np.array(sctimg)
 
             bgra = cv2.cvtColor(redef, cv2.COLOR_BGR2BGRA)
@@ -66,20 +66,17 @@ class Reader():
 
             cv2.imwrite('filter.jpg', rGray)
 
-            ret, thresh = cv2.threshold(rGray, floor, cieling, cv2.THRESH_BINARY)
+            uselessSlop, thresh = cv2.threshold(rGray, floor, cieling, cv2.THRESH_BINARY)
         
-
             pxin = np.count_nonzero(thresh)
-
-
-            
-            pxtot = rGray.shape[0] * rGray.shape[1]
+            pxtot = 96
 
             percentage = (pxin / pxtot) * 100
             print(f"Percentage of pixels within threshold: {percentage:.2f}%")
             
-            return percentage
-        
+            return percentage, pxin
+
+
     def readHeavylMeter(self):
         lowerPurple = np.array([110, 129, 94])
         upperPurple = np.array([157, 150, 113])
@@ -105,19 +102,15 @@ class Reader():
 
             cv2.imwrite('filter.jpg', rGray)
 
-            ret, thresh = cv2.threshold(rGray, floor, cieling, cv2.THRESH_BINARY)
+            uselessSlop, thresh = cv2.threshold(rGray, floor, cieling, cv2.THRESH_BINARY)
         
-
             pxin = np.count_nonzero(thresh)
-
-
-            
-            pxtot = rGray.shape[0] * rGray.shape[1]
+            pxtot = 96
 
             percentage = (pxin / pxtot) * 100
             print(f"Percentage of pixels within threshold: {percentage:.2f}%")
             
-            return percentage    
+            return percentage, pxin    
 
 
 

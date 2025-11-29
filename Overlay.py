@@ -40,10 +40,10 @@ class Overlay(QtWidgets.QWidget):
         quit_action.triggered.connect(QtWidgets.QApplication.quit)
         self.tray_icon.setContextMenu(menu)
         self.tray_icon.show()
-        self.label.resize(500, 50)   
+        self.label.resize(300, 80)   
 
-    def telemRefresh(self, val1, val2) :
-        self.label.setText(f"Special Meter %: {val1}\nHeavy Meter %: {val2}")
+    def telemRefresh(self, specialMeter, heavyMeter, specialPixels, heavyPixels) :
+        self.label.setText(f"Special Meter %: {specialMeter}\nSPMeter Px / 96: {specialPixels}\nHeavy Meter %: {heavyMeter}\nHMeter Px / 96: {heavyPixels}")
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
