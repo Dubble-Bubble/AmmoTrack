@@ -45,8 +45,8 @@ class Reader():
         floor = 80  
         cieling = 255
         with mss.mss() as sct:
-            # sctimg = sct.grab({"top": 0, "left": 0, "width": 1920, "height":1080})
-            sctimg = cv2.imread('spiderfullbounds.png')
+            sctimg = sct.grab({"top": 0, "left": 0, "width": 1920, "height":1080})
+            # sctimg = cv2.imread('spiderfullbounds.png')
             redef = np.array(sctimg)
 
             bgra = cv2.cvtColor(redef, cv2.COLOR_BGR2BGRA)
